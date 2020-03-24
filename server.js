@@ -1,15 +1,10 @@
 const https = require("https");
-const chalk = require("chalk");
-
-//initilizaling
-const error = chalk.red;
-const warning = chalk.keyword('orange');
-const success = chalk.green;
+const style = require("./style");
 
 const get = (options, cb) => {
     let data = "";
     if (!options.url) {
-        console.log(error("Provide an  URL!!!"));
+        console.log(style.error("Provide an  URL!!!"));
         cb({error: "Enter an URL"}, undefined);
     } else {
         https.get(options.url, (resp) => {
@@ -20,7 +15,7 @@ const get = (options, cb) => {
                 cb(undefined, JSON.parse(data));
             });
         }).on("error", err => {
-            console.log(error(err));
+            console.log(style.error(err));
             cb(err, undefined);
         });
     }
