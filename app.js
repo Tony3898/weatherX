@@ -2,13 +2,17 @@ const geoCode = require("./geocode");
 const weather = require("./weather");
 let options = {};
 
-geoCode.getData(options, (err, data) => {
-    console.log(data);
+options.address = 'asansol';
+
+geoCode.getData(options, (err, gercodeData) => {
+    console.log(gercodeData.features[0].place_name);
+    options.latitude = gercodeData.features[0].center[0];
+    options.longitude = gercodeData.features[0].center[1];
+    weather.getData(options, (err, weatherData) => {
+        console.log(weatherData);
+    });
 });
 
-options.latitude = "42.3601";
-options.longitude = "-71.058";
 
-weather.getData(options, (err, data) => {
-    console.log(data.features[0]);
-});
+
+

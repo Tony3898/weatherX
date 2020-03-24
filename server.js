@@ -6,10 +6,8 @@ const error = chalk.red;
 const warning = chalk.keyword('orange');
 const success = chalk.green;
 
-let data = "";
-
-
 const get = (options, cb) => {
+    let data = "";
     if (!options.url) {
         console.log(error("Provide an  URL!!!"));
         cb({error: "Enter an URL"}, undefined);
