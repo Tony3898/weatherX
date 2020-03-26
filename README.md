@@ -5,4 +5,4 @@ Simple weather app using node js for demostrating Yargs,HTTPS and some different
 
 ### Commands 
 
-- Check weather : node app.js add --city="Your City"
+- Check weather : node app.js place --city "Your City"
