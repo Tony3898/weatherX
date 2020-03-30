@@ -6,6 +6,10 @@ module.exports = {
                 {
                     name: "About",
                     path: "about"
+                },
+                {
+                    name: "Contact",
+                    path: "contact"
                 }
             ]
     }
