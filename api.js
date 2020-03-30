@@ -6,7 +6,7 @@ const hbs = require("hbs");
 const fs = require("fs");
 const app = express();
 
-
+app.set('port', (process.env.PORT || config.port));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "www/partials"));
 //app.use(express.static(path.join(__dirname, "ui/pages")));
@@ -22,7 +22,7 @@ class API {
         let pagePath = "index";
         if (page !== '/')
             pagePath = page.split("/")[1];
-        console.log("current", pagePath);
+        console.log("Rendering... " + pagePath);
         fs.readFile(path.join(__dirname, "ui/pages/" + pagePath + ".html"), 'utf-8', (err, html) => {
             fs.writeFile(path.join(__dirname, 'www/partials/page.hbs'), html, (err1) => {
                 app.get(page, (req, res) => {
@@ -39,8 +39,8 @@ class API {
                         }),
                         nav: config.nav.sub
                     });
-                }).listen(config.port, () => {
-                    console.log(style.success("Running on port " + config.port));
+                }).listen(app.get('port'), () => {
+                    console.log(style.success("Running on port " + app.get('port')));
                 });
             });
         });
