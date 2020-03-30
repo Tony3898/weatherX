@@ -1,7 +1,12 @@
-class config {
-    constructor() {
-        this.port = 3000;
+module.exports = {
+    port: 3000,
+    nav: {
+        sub:
+            [
+                {
+                    name: "About",
+                    path: "about"
+                }
+            ]
     }
-}
-
-module.exports = new config();
+};

@@ -3,6 +3,8 @@ const weather = require("./weather");
 const style = require("./style");
 const yargs = require("yargs");
 const API = require('./api');
+const config = require("./config");
+var url  = require('url');
 
 
 if (process.argv.length > 2) {
@@ -43,7 +45,5 @@ if (process.argv.length > 2) {
         }
     }).parse();
 } else {
-    API.get('/');
+    API.get("/");
 }
-
-

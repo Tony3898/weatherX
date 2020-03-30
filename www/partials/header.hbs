@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+<h1>Header</h1>
+<div id="nav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        {{#each nav as |n|}}
+            <li><a href="{{n.path}}">{{n.name}}</a></li>
+        {{/each}}
+    </ul>
+</div>
+{{>page}}
+{{>footer}}
