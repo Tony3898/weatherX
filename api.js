@@ -19,30 +19,27 @@ class API {
     }
 
     get = (page) => {
-        let pagePath = "index";
-        if (page !== '/')
-            pagePath = page.split("/")[1];
-        console.log("Rendering... " + pagePath);
-        fs.readFile(path.join(__dirname, "ui/pages/" + pagePath + ".html"), 'utf-8', (err, html) => {
-            fs.writeFile(path.join(__dirname, 'www/partials/page.hbs'), html, (err1) => {
-                app.get(page, (req, res) => {
+        app.get(page, (req, res) => {
+            let pagePath = req.url;
+            if (pagePath !== "/")
+                pagePath = pagePath.split("/")[1];
+            else
+                pagePath = "index";
+            fs.readFile(path.join(__dirname, "ui/pages/" + pagePath + ".html"), 'utf-8', (err, html) => {
+                fs.writeFile(path.join(__dirname, 'www/partials/page.hbs'), html, 'utf-8', (err1) => {
                     res.render('header', {
                         title: this.nav.sub.filter((data) => {
-                            if (data.name === "Home")
-                                data.name = "index";
                             return data.name.toLowerCase() === pagePath;
-
                         }).map((data) => {
-                            if (data.name === 'index')
-                                data.name = "Home";
                             return data.name;
                         }),
-                        nav: config.nav.sub
+                        nav: config.nav.sub,
+                        pageData:html
                     });
-                }).listen(app.get('port'), () => {
-                    console.log(style.success("Running on port " + app.get('port')));
                 });
             });
+        }).listen(app.get('port'), () => {
+            console.log(style.success("Running on port " + app.get('port')));
         });
     };
 

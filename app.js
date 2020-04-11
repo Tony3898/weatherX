@@ -4,8 +4,7 @@ const style = require("./style");
 const yargs = require("yargs");
 const API = require('./api');
 const config = require("./config");
-var url  = require('url');
-
+var url = require('url');
 
 if (process.argv.length > 2) {
     let options = {};
@@ -26,7 +25,6 @@ if (process.argv.length > 2) {
                     if (geoCodeError) {
                         console.log(style.error(geoCodeError));
                     } else {
-                        console.log(style.success(gercodeData.features[0].place_name));
                         options.latitude = gercodeData.features[0].center[0];
                         options.longitude = gercodeData.features[0].center[1];
                         weather.getData(options, (weatherError, weatherData) => {
@@ -40,10 +38,10 @@ if (process.argv.length > 2) {
                     }
                 });
             } else {
-                console.log(style.error("PLease enter an city"));
+                console.log(style.error("Please enter an city"));
             }
         }
     }).parse();
 } else {
-    API.get("/");
+    API.get("*");
 }

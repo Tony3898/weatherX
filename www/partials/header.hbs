@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{title}}</title>
+    {{#if title}}
+        <title>{{title}}</title>
+    {{else}}
+        <title>Home</title>
+    {{/if}}
 </head>
 <body>
 <h1>Header</h1>
@@ -9,9 +13,10 @@
     <ul>
         <li><a href="/">Home</a></li>
         {{#each nav as |n|}}
-            <li><a href="{{n.path}}">{{n.name}}</a></li>
+            <li data-id={{n.name}} class="li"><a href="{{n.path}}">{{n.name}}</a></li>
         {{/each}}
     </ul>
 </div>
-{{>page}}
+{{{pageData}}}
 {{>footer}}
+
