@@ -6,17 +6,34 @@
     {{else}}
         <title>Home</title>
     {{/if}}
+
+    <link href="https://fonts.googleapis.com/css?family=Coiny&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<h1>Header</h1>
-<div id="nav">
-    <ul>
-        <li><a href="/">Home</a></li>
-        {{#each nav as |n|}}
-            <li data-id={{n.name}} class="li"><a href="{{n.path}}">{{n.name}}</a></li>
-        {{/each}}
-    </ul>
+<div class="container-fullwidth">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark self-nav">
+        <a class="navbar-brand" href="/">Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                {{#each nav as |n|}}
+                    <li data-id={{n.name}} class="nav-item"><a class="nav-link" href="{{n.path}}">{{n.name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
 </div>
-{{{pageData}}}
+
+<div class="container-fullwidth">
+    {{{html}}}
+</div>
 {{>footer}}
+
 
