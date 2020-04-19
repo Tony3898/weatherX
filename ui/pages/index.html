@@ -1,3 +1,36 @@
 <div class="intro">
-    <h1>INtro</h1>
+    <div class="search-box">
+        <form>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" aria-describedby="locationHelp"
+                       placeholder="Enter location">
+            </div>
+            <button type="submit" class="btn btn-success" id="submit">Submit</button>
+            <div class="search-result">
+                <p id="report"></p>
+            </div>
+        </form>
+    </div>
+
 </div>
+<script>
+    $(document).ready(() => {
+        $("#report").hide();
+        $("#submit").on('click', (e) => {
+            e.preventDefault();
+            $("#submit").append("  <i class=\"fa fa-spinner fa-spin loading\"></i>");
+            fetch("/weather?address=" + $("#location").val()).then((response) => {
+                $(".loading").remove();
+                response.json().then((data) => {
+                    if (data.weatherData.code && data.weatherData.code === 400)
+                        $(`#report`).text(data.weatherData.error).css("color","red").show();
+                    else
+                    $(`#report`).text(data.weatherData.currently.summary).show();
+                })
+            }).catch((error) => {
+                console.log(error)
+            })
+        })
+    });
+</script>

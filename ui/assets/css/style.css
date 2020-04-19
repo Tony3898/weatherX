@@ -33,13 +33,47 @@ body, html {
 }
 
 .intro {
-    background: lawngreen;
+    background-size: cover;
+    background: url("../images/weather.jpg") repeat-x 0 20%,
+    0 100%,
+    0 50%,
+    0 100%,
+    0 0;
+    background-size:
+            2500px,
+            800px,
+            500px 200px,
+            1000px,
+            400px 260px;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    animation: 200s para infinite linear;
+}
+.intro .search-box
+{
+    background: #FBF8EF;
+    padding: 30px;
+    height: auto;
+    width: 50%;
+    border: 5px solid var(--accent-color);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #353E4A;
+
+}
+
+@keyframes para {
+    100% {
+        background-position:
+                -5000px 20%,
+                -800px 95%,
+                500px 50%,
+                1000px 100%,
+                400px 0;
+    }
 }
 
 .foot {
