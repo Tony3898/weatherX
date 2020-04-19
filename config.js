@@ -3,10 +3,7 @@ module.exports = {
     nav: {
         sub:
             [
-                {
-                    name: "About",
-                    path: "about"
-                },
+
             ]
     }
 };
