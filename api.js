@@ -20,7 +20,7 @@ class API {
         this.nav = config.nav;
     }
 
-    get = (page) => {
+    get(page) {
         app.get(page, (req, res) => {
             let pagePath = req.url;
             if (pagePath !== "/")
@@ -34,7 +34,7 @@ class API {
             }
             if (!req.query.address) {
                 fs.readFile(path.join(__dirname, "ui/pages/" + pagePath + ".html"), 'utf-8', (err, html) => {
-                    res.render('header', {
+                    res.render('page', {
                         title: this.nav.sub.filter((data) => {
                             return data.name.toLowerCase() === pagePath;
                         }).map((data) => {
